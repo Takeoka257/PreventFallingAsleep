@@ -10,7 +10,7 @@ pip install pyautogui
 
 ### 取説
 ```bash
-python PreventFallingAsleep
+python PreventFallingAsleep.py
 ```
 で起動後、1分間マウス操作がないと判定したらマウス操作を行う。
 
