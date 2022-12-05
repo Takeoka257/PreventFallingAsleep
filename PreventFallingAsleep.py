@@ -4,26 +4,30 @@ import datetime
 import math
 
 def move_mouse():
-    ''' マウスポインタを中央付近で移動させる
+    ''' マウスポインタを移動させる
+            Startボタンクリック → 中央移動 → 中央右上移動 → 中央移動
+            → 中央左下移動 → 中央移動 → Startボタンクリック
     '''
+    pyautogui.FAILSAFE = False                              # フェールセーフエリアクリックのため解除
+
     (display_w, display_h) = pyautogui.size()
     center_x = display_w / 2
     center_y = display_h / 2
     distance_x = display_w / 4
     distance_y = display_h / 4
 
-    pyautogui.moveTo(0, center_y)                    # マウスポインタを画面左下へ移動
+    pyautogui.moveTo(0, display_h)                          # 画面左下(スタートボタン位置)へ移動
     pyautogui.click()
-
-    pyautogui.moveTo(center_x, center_y)                    # マウスポインタを画面中央へ移動
-    pyautogui.move(distance_x, -distance_y, duration=1)     # マウスポインタを画面中央右上へ移動
-    pyautogui.moveTo(center_x, center_y, duration=1)        # マウスポインタを画面中央へ移動
-    pyautogui.move(-distance_x, distance_y, duration=1)     # マウスポインタを画面中央左下へ移動
-    pyautogui.moveTo(center_x, center_y, duration=1)        # マウスポインタを画面中央へ移動
-
-    pyautogui.moveTo(0, center_y)                    # マウスポインタを画面左下へ移動
+    pyautogui.moveTo(center_x, center_y)                    # 画面中央へ移動
+    pyautogui.move(distance_x, -distance_y, duration=1)     # 画面中央右上へ移動
+    pyautogui.moveTo(center_x, center_y, duration=1)        # 画面中央へ移動
+    pyautogui.move(-distance_x, distance_y, duration=1)     # 画面中央左下へ移動
+    pyautogui.moveTo(center_x, center_y, duration=1)        # 画面中央へ移動
+    pyautogui.moveTo(0, display_h)                          # 画面左下(スタートボタン位置)へ移動
     pyautogui.click()
-    pyautogui.moveTo(center_x, center_y)                    # マウスポインタを画面中央へ移動
+    pyautogui.moveTo(center_x, center_y)                    # 画面中央へ移動
+
+    pyautogui.FAILSAFE = True
 
 def is_mouse_moved(position_new, position_old):
     ''' マウス移動判定
